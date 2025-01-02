@@ -11,8 +11,6 @@ var _FlowTransformer = require('./FlowTransformer'); var _FlowTransformer2 = _in
 var _JestHoistTransformer = require('./JestHoistTransformer'); var _JestHoistTransformer2 = _interopRequireDefault(_JestHoistTransformer);
 var _JSXTransformer = require('./JSXTransformer'); var _JSXTransformer2 = _interopRequireDefault(_JSXTransformer);
 var _NumericSeparatorTransformer = require('./NumericSeparatorTransformer'); var _NumericSeparatorTransformer2 = _interopRequireDefault(_NumericSeparatorTransformer);
-var _OptionalCatchBindingTransformer = require('./OptionalCatchBindingTransformer'); var _OptionalCatchBindingTransformer2 = _interopRequireDefault(_OptionalCatchBindingTransformer);
-var _OptionalChainingNullishTransformer = require('./OptionalChainingNullishTransformer'); var _OptionalChainingNullishTransformer2 = _interopRequireDefault(_OptionalChainingNullishTransformer);
 var _ReactDisplayNameTransformer = require('./ReactDisplayNameTransformer'); var _ReactDisplayNameTransformer2 = _interopRequireDefault(_ReactDisplayNameTransformer);
 var _ReactHotLoaderTransformer = require('./ReactHotLoaderTransformer'); var _ReactHotLoaderTransformer2 = _interopRequireDefault(_ReactHotLoaderTransformer);
 
@@ -50,11 +48,11 @@ var _TypeScriptTransformer = require('./TypeScriptTransformer'); var _TypeScript
     this.disableESTransforms = Boolean(options.disableESTransforms);
 
     if (!options.disableESTransforms) {
-      this.transformers.push(
-        new (0, _OptionalChainingNullishTransformer2.default)(tokenProcessor, this.nameManager),
-      );
+      /*  this.transformers.push(
+        new OptionalChainingNullishTransformer(tokenProcessor, this.nameManager),
+      ); */
       this.transformers.push(new (0, _NumericSeparatorTransformer2.default)(tokenProcessor));
-      this.transformers.push(new (0, _OptionalCatchBindingTransformer2.default)(tokenProcessor, this.nameManager));
+      // this.transformers.push(new OptionalCatchBindingTransformer(tokenProcessor, this.nameManager));
     }
 
     if (transforms.includes("jsx")) {

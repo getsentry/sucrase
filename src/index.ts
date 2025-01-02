@@ -91,7 +91,6 @@ function getSucraseContext(code: string, options: Options): SucraseContext {
   const isJSXEnabled = options.transforms.includes("jsx");
   const isTypeScriptEnabled = options.transforms.includes("typescript");
   const isFlowEnabled = options.transforms.includes("flow");
-  const disableESTransforms = options.disableESTransforms === true;
   const file = parse(code, isJSXEnabled, isTypeScriptEnabled, isFlowEnabled);
   const tokens = file.tokens;
   const scopes = file.scopes;
@@ -102,7 +101,8 @@ function getSucraseContext(code: string, options: Options): SucraseContext {
     code,
     tokens,
     isFlowEnabled,
-    disableESTransforms,
+    // SENTRY-SPECIFIC: We force this to always be "true", we always want to skip these transforms
+    true,
     helperManager,
   );
   const enableLegacyTypeScriptModuleInterop = Boolean(options.enableLegacyTypeScriptModuleInterop);
