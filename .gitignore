@@ -1,6 +1,6 @@
 .idea
 node_modules
-dist
+integrations/*/dist
 dist-self-build
 dist-types
 example-runner/example-repos
