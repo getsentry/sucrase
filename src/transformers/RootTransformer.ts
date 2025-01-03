@@ -11,6 +11,8 @@ import FlowTransformer from "./FlowTransformer";
 import JestHoistTransformer from "./JestHoistTransformer";
 import JSXTransformer from "./JSXTransformer";
 import NumericSeparatorTransformer from "./NumericSeparatorTransformer";
+import OptionalCatchBindingTransformer from "./OptionalCatchBindingTransformer";
+import OptionalChainingNullishTransformer from "./OptionalChainingNullishTransformer";
 import ReactDisplayNameTransformer from "./ReactDisplayNameTransformer";
 import ReactHotLoaderTransformer from "./ReactHotLoaderTransformer";
 import type Transformer from "./Transformer";
@@ -48,11 +50,11 @@ export default class RootTransformer {
     this.disableESTransforms = Boolean(options.disableESTransforms);
 
     if (!options.disableESTransforms) {
-      /*  this.transformers.push(
+      this.transformers.push(
         new OptionalChainingNullishTransformer(tokenProcessor, this.nameManager),
-      ); */
+      );
       this.transformers.push(new NumericSeparatorTransformer(tokenProcessor));
-      // this.transformers.push(new OptionalCatchBindingTransformer(tokenProcessor, this.nameManager));
+      this.transformers.push(new OptionalCatchBindingTransformer(tokenProcessor, this.nameManager));
     }
 
     if (transforms.includes("jsx")) {
