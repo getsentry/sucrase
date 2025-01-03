@@ -34,6 +34,7 @@ export default class RootTransformer {
   
   
   
+  
 
   constructor(
     sucraseContext,
@@ -48,13 +49,16 @@ export default class RootTransformer {
     this.isImportsTransformEnabled = transforms.includes("imports");
     this.isReactHotLoaderTransformEnabled = transforms.includes("react-hot-loader");
     this.disableESTransforms = Boolean(options.disableESTransforms);
+    this.disableES2019Transforms = Boolean(options.disableES2019Transforms);
 
-    if (!options.disableESTransforms) {
+    if (!options.disableESTransforms && !options.disableES2019Transforms) {
       this.transformers.push(
         new OptionalChainingNullishTransformer(tokenProcessor, this.nameManager),
       );
-      this.transformers.push(new NumericSeparatorTransformer(tokenProcessor));
       this.transformers.push(new OptionalCatchBindingTransformer(tokenProcessor, this.nameManager));
+    }
+    if (!options.disableESTransforms) {
+      this.transformers.push(new NumericSeparatorTransformer(tokenProcessor));
     }
 
     if (transforms.includes("jsx")) {

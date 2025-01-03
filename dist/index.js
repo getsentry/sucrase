@@ -92,6 +92,7 @@ function getSucraseContext(code, options) {
   const isTypeScriptEnabled = options.transforms.includes("typescript");
   const isFlowEnabled = options.transforms.includes("flow");
   const disableESTransforms = options.disableESTransforms === true;
+  const disableES2019Transforms = options.disableES2019Transforms === true;
   const file = _parser.parse.call(void 0, code, isJSXEnabled, isTypeScriptEnabled, isFlowEnabled);
   const tokens = file.tokens;
   const scopes = file.scopes;
@@ -102,7 +103,7 @@ function getSucraseContext(code, options) {
     code,
     tokens,
     isFlowEnabled,
-    disableESTransforms,
+    disableESTransforms || disableES2019Transforms,
     helperManager,
   );
   const enableLegacyTypeScriptModuleInterop = Boolean(options.enableLegacyTypeScriptModuleInterop);

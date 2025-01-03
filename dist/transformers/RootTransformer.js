@@ -34,6 +34,7 @@ var _TypeScriptTransformer = require('./TypeScriptTransformer'); var _TypeScript
   
   
   
+  
 
   constructor(
     sucraseContext,
@@ -48,13 +49,16 @@ var _TypeScriptTransformer = require('./TypeScriptTransformer'); var _TypeScript
     this.isImportsTransformEnabled = transforms.includes("imports");
     this.isReactHotLoaderTransformEnabled = transforms.includes("react-hot-loader");
     this.disableESTransforms = Boolean(options.disableESTransforms);
+    this.disableES2019Transforms = Boolean(options.disableES2019Transforms);
 
-    if (!options.disableESTransforms) {
+    if (!options.disableESTransforms && !options.disableES2019Transforms) {
       this.transformers.push(
         new (0, _OptionalChainingNullishTransformer2.default)(tokenProcessor, this.nameManager),
       );
-      this.transformers.push(new (0, _NumericSeparatorTransformer2.default)(tokenProcessor));
       this.transformers.push(new (0, _OptionalCatchBindingTransformer2.default)(tokenProcessor, this.nameManager));
+    }
+    if (!options.disableESTransforms) {
+      this.transformers.push(new (0, _NumericSeparatorTransformer2.default)(tokenProcessor));
     }
 
     if (transforms.includes("jsx")) {

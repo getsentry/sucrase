@@ -54,6 +54,7 @@ export type HydratedOptions = Omit<Required<Options>, "filePath" | "sourceMapOpt
 export const DEFAULT_OPTIONS: HydratedOptions = {
   transforms: ["jsx", "typescript", "imports"],
   disableESTransforms: false,
+  disableES2019Transforms: false,
   production: false,
   jsxRuntime: "classic",
   jsxImportSource: "react",
