@@ -18,6 +18,11 @@ export interface Options {
      */
     disableESTransforms?: boolean;
     /**
+     * Opts out of all ES2019 and older syntax transformations:
+     * optional chaining, nullish coalescing, optional catch binding.
+     */
+    disableES2019Transforms?: boolean;
+    /**
      * Transformation mode for the JSX transform.
      * - "classic" refers to the original behavior using `React.createElement`.
      * - "automatic" refers to the transform behavior released with React 17,

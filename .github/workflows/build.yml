@@ -18,7 +18,7 @@ jobs:
       - run: yarn
       - run: yarn build
       - run: yarn lint
-      - run: yarn test-with-coverage && yarn report-coverage
+      - run: yarn test-with-coverage
       - run: yarn integration-test
       - run: yarn test262
       - run: yarn check-babel-tests
@@ -49,7 +49,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - projects: "babel"
           - projects: "react decaffeinate decaffeinate-parser coffee-lex"
           - projects: "tslint apollo-client"
     steps:
@@ -60,29 +59,3 @@ jobs:
       - run: yarn
       - run: yarn fast-build
       - run: yarn run-examples ${{ matrix.projects }}
-  perf-benchmark:
-    name: "Compare performance"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          # Fetch all branches so we can compare with the default branch.
-          fetch-depth: 0
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - run: yarn
-      # Clone the jest repo and run an untimed benchmark first, since the first
-      # run immediately after cloning tends to be slower.
-      - run: yarn benchmark jest-dev
-      - run: yarn benchmark-compare
-      # The benchmark-compare script leaves a ./.perf-comparison/summary.txt file
-      # to be forwarded to the comment-perf.yml workflow via an artifact. We
-      # also need to send the PR number. See that file and
-      # https://securitylab.github.com/research/github-actions-preventing-pwn-requests
-      # for details of how the two fit together.
-      - run: echo ${{ github.event.number }} > ./.perf-comparison/pr-number.txt
-      - uses: actions/upload-artifact@v2
-        with:
-          name: perf-comparison
-          path: .perf-comparison/

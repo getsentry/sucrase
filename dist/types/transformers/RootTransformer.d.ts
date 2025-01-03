@@ -12,6 +12,7 @@ export default class RootTransformer {
     private isImportsTransformEnabled;
     private isReactHotLoaderTransformEnabled;
     private disableESTransforms;
+    private disableES2019Transforms;
     private helperManager;
     constructor(sucraseContext: SucraseContext, transforms: Array<Transform>, enableLegacyBabel5ModuleInterop: boolean, options: Options);
     transform(): RootTransformerResult;

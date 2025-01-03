@@ -20,6 +20,7 @@ var _tsinterfacechecker = require('ts-interface-checker'); var t = _interopRequi
  const Options = t.iface([], {
   transforms: t.array("Transform"),
   disableESTransforms: t.opt("boolean"),
+  disableES2019Transforms: t.opt("boolean"),
   jsxRuntime: t.opt(t.union(t.lit("classic"), t.lit("automatic"), t.lit("preserve"))),
   production: t.opt("boolean"),
   jsxImportSource: t.opt("string"),
