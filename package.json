@@ -1,6 +1,6 @@
 {
   "name": "sucrase",
-  "version": "3.35.0",
+  "version": "3.36.0",
   "description": "Super-fast alternative to Babel for when you can target modern JS runtimes",
   "author": "Alan Pierce <alangpierce@gmail.com>",
   "license": "MIT",
